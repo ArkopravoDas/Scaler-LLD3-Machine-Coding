@@ -19,5 +19,11 @@ public class Main {
         }
 
         game.getBoard().displayBoard();
+
+        if(game.getGameState().equals(GameState.WINNING)) {
+            System.out.printf("The winner of the game is %s", game.getWinner().getName());
+        } else {
+            System.out.println("The game ended in a draw");
+        }
     }
 }

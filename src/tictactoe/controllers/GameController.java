@@ -1,5 +1,6 @@
 package tictactoe.controllers;
 
+import tictactoe.models.Cell;
 import tictactoe.models.Game;
 import tictactoe.models.HumanPlayer;
 import tictactoe.models.Player;
@@ -34,14 +35,33 @@ public class GameController {
 
     }
 
+    /**
+     * Helps the user make the next move
+     *
+     * 1. Finds the player with next move
+     * 2. Calls the makeMove method for the corresponding player
+     * 3. Updates the board with that move and corresponding validation
+     * 4. Check all the winning strategies
+     * 5. Displays the board.
+     *
+     */
+
     public void makeNextMove() {
+
+        if(game.getBoard().isFull()) {
+            game.setDraw();
+            return;
+        }
+
+        // Step 1
         int currPlayerIndex = game.getCurrPlayerIndex();
         Player currPlayer = game.playerList.get(currPlayerIndex);
 
+        // Step 2
         System.out.printf("It's %s's move", currPlayer.getName());
-        currPlayer.makeMove();
+        game.makeMoveForCurrPlayer();
 
-        // Increment the game index
-        // Check if somebody won
+        // Step 4 - check for winning strategies
+        game.postMoveWinnerCheck();
     }
 }

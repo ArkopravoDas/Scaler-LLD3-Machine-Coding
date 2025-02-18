@@ -14,5 +14,5 @@ public abstract class Player {
         this.id = id;
     }
 
-    public abstract void makeMove();
+    public abstract Cell makeMove();
 }

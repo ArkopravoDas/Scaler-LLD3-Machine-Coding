@@ -8,11 +8,13 @@ public class HumanPlayer extends Player {
     }
 
     @Override
-    public void makeMove() {
+    public Cell makeMove() {
         Scanner sc = new Scanner(System.in);
         System.out.print(" What is your next move ? ");
         int row = sc.nextInt();
         int col = sc.nextInt();
+
+        return new Cell(row, col);
 
     }
 }

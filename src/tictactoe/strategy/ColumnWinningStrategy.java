@@ -5,21 +5,16 @@ import tictactoe.models.CellState;
 import tictactoe.models.Game;
 import tictactoe.models.Player;
 
-public class RowWinningStrategy implements WinningStrategy {
-
+public class ColumnWinningStrategy implements WinningStrategy {
     @Override
     public boolean isWinning(Game game) {
-        // O(N)
-
         Player currPlayer = game.playerList.get(game.currPlayerIndex);
-
         Cell cell = game.moves.get(game.moves.size() - 1);
+        int col = cell.getCol();
 
-        int row = cell.getRow();
-
-        for(int i=0; i<game.board.getN(); i++){
-            Cell curr = game.board.getCells().get(row).get(i);
-            if(curr.getCellState().equals(CellState.FREE) || !curr.getPlayer().equals(currPlayer)) {
+        for (int i = 0; i < game.board.getN(); i++) {
+            Cell curr = game.board.getCells().get(i).get(col);
+            if (curr.getCellState().equals(CellState.FREE) || !curr.getPlayer().equals(currPlayer)) {
                 return false;
             }
         }
