@@ -1,9 +1,6 @@
 package tictactoe.controllers;
 
-import tictactoe.models.Cell;
-import tictactoe.models.Game;
-import tictactoe.models.HumanPlayer;
-import tictactoe.models.Player;
+import tictactoe.models.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,15 +21,31 @@ public class GameController {
 
         List<Player> playerList = new ArrayList<>();
         for(int i=0; i<n-1; i++){
-            System.out.println("Enter the player name and the symbol");
-            String name = sc.next();
-            String symbol = sc.next();
-            // TODO: Handle bot players as Input
-            playerList.add(new HumanPlayer(name, symbol.charAt(0), i+1));
+            playerList.add(getPlayerInfoFromUser(i + 1));
         }
 
         return new Game(n, playerList);
 
+    }
+
+    private static Player getPlayerInfoFromUser(int i) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the player name and the symbol");
+        String name = sc.next();
+        String symbol = sc.next();
+        System.out.println("Is this a bot player?");
+        String ans = sc.next();
+        if(ans.equals("Yes")) {
+            System.out.println("Enter the difficulty level for the bot (1/2/3)");
+            int val = sc.nextInt();
+            BotDifficultyLevel botDifficultyLevel = switch (val) {
+                case 1 -> BotDifficultyLevel.EASY;
+                case 2 -> BotDifficultyLevel.MEDIUM;
+                default -> BotDifficultyLevel.HARD;
+            };
+            return new BotPlayer(name, symbol.charAt(0), i + 1, botDifficultyLevel);
+        }
+        return new HumanPlayer(name, symbol.charAt(0), i + 1);
     }
 
     /**
@@ -58,7 +71,7 @@ public class GameController {
         Player currPlayer = game.playerList.get(currPlayerIndex);
 
         // Step 2
-        System.out.printf("It's %s's move", currPlayer.getName());
+        System.out.printf("It's %s's move\n", currPlayer.getName());
         game.makeMoveForCurrPlayer();
 
         // Step 4 - check for winning strategies
