@@ -5,7 +5,7 @@ import tictactoe.models.CellState;
 import tictactoe.models.Game;
 import tictactoe.models.Player;
 
-public class DiagonalWinningStrategy implements WinningStrategy {
+public class DiagonalWinningStrategy implements WinningStrategy{
     @Override
     public boolean isWinning(Game game) {
         return leftTopToRightBottomCheck(game) || rightTopToLeftBottom(game);

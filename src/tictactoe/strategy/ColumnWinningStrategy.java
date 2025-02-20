@@ -5,7 +5,7 @@ import tictactoe.models.CellState;
 import tictactoe.models.Game;
 import tictactoe.models.Player;
 
-public class ColumnWinningStrategy implements WinningStrategy {
+public class ColumnWinningStrategy implements WinningStrategy{
     @Override
     public boolean isWinning(Game game) {
         Player currPlayer = game.playerList.get(game.currPlayerIndex);

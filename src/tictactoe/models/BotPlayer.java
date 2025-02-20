@@ -3,8 +3,7 @@ package tictactoe.models;
 import tictactoe.strategy.BotPlayingStrategyFactory;
 import tictactoe.strategy.BotPlayingStrategy;
 
-public class BotPlayer extends Player {
-
+public class BotPlayer extends Player{
     BotDifficultyLevel botDifficultyLevel;
     BotPlayingStrategy botPlayingStrategy;
 
@@ -15,7 +14,7 @@ public class BotPlayer extends Player {
     }
 
     @Override
-    public Cell makeMove(Board board, Player player){
+    public Cell makeMove(Board board, Player player) {
         return botPlayingStrategy.suggestMove(player, board);
     }
 }

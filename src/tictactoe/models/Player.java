@@ -13,6 +13,5 @@ public abstract class Player {
         this.symbol = symbol;
         this.id = id;
     }
-
     public abstract Cell makeMove(Board board, Player player);
 }

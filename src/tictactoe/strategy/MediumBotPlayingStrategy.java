@@ -21,7 +21,7 @@ public class MediumBotPlayingStrategy implements BotPlayingStrategy{
                 }
             }
         }
-        int x = Math.abs(RandomGenerator.getDefault().nextInt() % availableCells.size());
+        int x = Math.abs(RandomGenerator.getDefault().nextInt()) % availableCells.size();
         return availableCells.get(x);
     }
 }
